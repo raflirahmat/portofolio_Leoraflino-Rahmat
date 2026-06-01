@@ -1116,3 +1116,53 @@ html {
 .tali-membal {
   transition: height 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.5) !important;
 }
+/* ==========================================================================
+   PERBAIKAN SAKTI POSISI ID CARD PASTI DI TENGAH (HP & LAPTOP) BY RAFLI
+   ========================================================================== */
+
+#drag-container {
+  position: absolute;
+  top: 0;
+  left: 50%; /* Geser titik awal container ke tengah layar */
+  transform: translateX(
+    -50%
+  ); /* Tarik ke kiri setengah ukuran wadah agar pas di tengah */
+  width: 300px; /* Batasi lebar container agar tali & kartu sejajar */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Pastikan tali dan kartu lurus vertikal di tengah */
+  justify-content: flex-start;
+  touch-action: none;
+  z-index: 10;
+}
+
+/* Pastikan tali gantungan tidak ikut geser */
+.tali-id-card {
+  width: 6px;
+  height: 120px;
+  background: #00a8b5;
+  box-shadow: 0 0 10px rgba(0, 168, 181, 0.5);
+  z-index: 9;
+}
+
+/* Kotak ID Card */
+.id-card-holder {
+  position: relative; /* Jangan pakai posisi absolute di sini agar tidak merusak koordinat drag */
+  width: 260px;
+  height: 400px;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border: 3px solid #00a8b5;
+  border-radius: 15px;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(0, 168, 181, 0.3);
+  z-index: 11;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+}
