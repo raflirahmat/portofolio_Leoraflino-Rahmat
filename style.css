@@ -1049,120 +1049,119 @@ html {
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.6);
 }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-/* Mengatur posisi tombol masuk agar berada di bawah ID card */
-.splash-content {
-  position: absolute;
-  bottom: 80px;
-  z-index: 12;
-} /* ==========================================================================
-   PERBAIKAN CSS ID CARD INTERAKTIF BY RAFLI
-   ========================================================================== */
-
-#drag-container {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden; /* Mengunci total geseran ke samping */
+  position: relative;
+}
+/* Ganti .main-container dengan nama class pembungkus portofoliomu */
+.main-container {
+  width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 300px;
-  height: 100vh;
-  touch-action: none; /* Mencegah layar HP ikut tergulir saat ditarik */
-  z-index: 10;
-}
-
-/* Tali Gantungan */
-.tali-id-card {
-  width: 6px;
-  height: 120px;
-  background: #00a8b5;
-  box-shadow: 0 0 10px rgba(0, 168, 181, 0.5);
-  z-index: 9;
-}
-
-/* Kotak ID Card */
-.id-card-holder {
-  position: relative; /* PASTIKAN ADA INI AGAR BISA DIGERAKKAN */
-  width: 260px;
-  height: 400px;
-  background: linear-gradient(135deg, #1e293b, #0f172a);
-  border: 3px solid #00a8b5;
-  border-radius: 15px;
-  box-shadow:
-    0 20px 50px rgba(0, 0, 0, 0.6),
-    0 0 20px rgba(0, 168, 181, 0.3);
-  z-index: 11;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  cursor: grab;
-
-  /* Pengaman agar teks/gambar tidak nge-blok biru saat ditarik jempol/mouse */
-  user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-}
-
-.id-card-holder:active {
-  cursor: grabbing;
-}
-
-/* Efek transisi membal halus saat tarikan dilepas */
-.efek-membal {
-  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.5) !important;
-}
-.tali-membal {
-  transition: height 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.5) !important;
-}
-/* ==========================================================================
-   PERBAIKAN SAKTI POSISI ID CARD PASTI DI TENGAH (HP & LAPTOP) BY RAFLI
-   ========================================================================== */
-
-#drag-container {
-  position: absolute;
-  top: 0;
-  left: 50%; /* Geser titik awal container ke tengah layar */
-  transform: translateX(
-    -50%
-  ); /* Tarik ke kiri setengah ukuran wadah agar pas di tengah */
-  width: 300px; /* Batasi lebar container agar tali & kartu sejajar */
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Pastikan tali dan kartu lurus vertikal di tengah */
+  align-items: center; /* Memaksa semua konten di dalamnya pas di tengah */
   justify-content: flex-start;
-  touch-action: none;
-  z-index: 10;
+  overflow-x: hidden; /* Double protection untuk container utama */
+  padding: 0 15px; /* Jarak aman kanan-kiri biar gak nempel layar HP */
 }
-
-/* Pastikan tali gantungan tidak ikut geser */
-.tali-id-card {
-  width: 6px;
-  height: 120px;
-  background: #00a8b5;
-  box-shadow: 0 0 10px rgba(0, 168, 181, 0.5);
-  z-index: 9;
+img {
+  max-width: 100%;
+  height: auto;
 }
+/* --- KHUSUS MENGATUR UKURAN TULISAN DI HP --- */
+@media (max-width: 576px) {
+  /* Ukuran Judul Utama / Nama Kamu */
+  h1 {
+    font-size: 1.8rem !important;
+  }
 
-/* Kotak ID Card */
-.id-card-holder {
-  position: relative; /* Jangan pakai posisi absolute di sini agar tidak merusak koordinat drag */
-  width: 260px;
-  height: 400px;
-  background: linear-gradient(135deg, #1e293b, #0f172a);
-  border: 3px solid #00a8b5;
-  border-radius: 15px;
-  box-shadow:
-    0 20px 50px rgba(0, 0, 0, 0.6),
-    0 0 20px rgba(0, 168, 181, 0.3);
-  z-index: 11;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  cursor: grab;
-  user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
+  /* Ukuran Sub-judul (seperti "IT Student", "About Me", dll) */
+  h2 {
+    font-size: 1.4rem !important;
+  }
+
+  /* Ukuran Judul Section Kecil */
+  h3 {
+    font-size: 1.2rem !important;
+  }
+
+  /* Ukuran Teks Paragraf / Deskripsi / List */
+  p,
+  span,
+  li,
+  a {
+    font-size: 0.9rem !important;
+    line-height: 1.4 !important; /* Biar jarak antar baris teks pas di HP */
+  }
+}
+/* --- RESPONSIVE KHUSUS LAYAR HP (Maksimal Lebar 576px) --- */
+@media (max-width: 576px) {
+  /* 1. Foto Profil Bulat Ideal (260px) */
+  .profile-img,
+  img[src*="rahmat"] {
+    width: 260px !important;
+    height: 260px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    margin: 0 auto !important;
+    display: block !important;
+  }
+
+  /* 2. Mengecilkan Tulisan Nama yang Terlalu Besar */
+  /* Ganti h1 dengan class atau tag yang membungkus namamu jika bukan h1 */
+  h1,
+  .nama-besar {
+    font-size: 2.2rem !important; /* Ukuran diturunkan agar lebih proporsional */
+    line-height: 1.2 !important;
+    letter-spacing: -0.5px !important; /* Biar teksnya agak rapat dan pas di HP */
+    text-align: center !important;
+    margin-top: 20px !important;
+    margin-bottom: 10px !important;
+  }
+}
+/* --- RESPONSIVE KHUSUS LAYAR HP (Maksimal Lebar 576px) --- */
+@media (max-width: 576px) {
+  /* 1. Foto Profil Bulat Ideal */
+  .profile-img,
+  img[src*="rahmat"] {
+    width: 260px !important;
+    height: 260px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    margin: 0 auto !important;
+    display: block !important;
+  }
+
+  /* 2. Menembak Langsung Class .nama-saya Agar Mengecil & Satu Baris */
+  h1.nama-saya,
+  .nama-saya {
+    font-size: 18px !important; /* Ukurannya langsung ciut ke 20px (bisa diganti 18px atau 22px sesuai selera) */
+    white-space: nowrap !important; /* Dikunci total agar TETAP 1 BARIS, tidak patah ke bawah */
+    text-align: center !important; /* Rata tengah sempurna */
+    margin-top: 18px !important; /* Jarak ideal di bawah foto */
+    margin-bottom: 10px !important;
+    display: block !important;
+  }
+}
+/* 2. Kunci Total Menjadi 1 Baris Paragraf Utuh */
+h1.nama-saya,
+.nama-saya {
+  font-size: 5.5vw !important; /* Ukuran fleksibel, otomatis mengecil sesuai lebar HP */
+  white-space: nowrap !important; /* Larang keras teks patah ke bawah */
+  word-break: keep-all !important; /* Melarang pemotongan kata */
+  overflow-wrap: normal !important; /* Memastikan teks mengalir normal dalam 1 baris */
+  display: block !important; /* Menjadikan 1 blok paragraf utuh */
+  width: 100% !important; /* Memenuhi lebar layar */
+  text-align: center !important; /* Rata tengah sempurna */
+  margin-top: 20px !important;
+  margin-bottom: 10px !important;
 }
